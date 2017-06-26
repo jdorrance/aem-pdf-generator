@@ -20,12 +20,15 @@
                 var pagePath = CQ.WCM.getPagePath();
                 var fileName = pagePath.substring(pagePath.lastIndexOf("/") + 1);
                 var anchor = document.createElement('a');
-                anchor.href = pagePath + ".docrender.pdf";
+                //anchor.href = pagePath + ".docrender.pdf";
+                anchor.href = "http://localhost:8080/convert?auth=arachnys-weaver&url=http://author:4502" + pagePath + ".docrender.html%3Fwcmmode=disabled";
                 anchor.target = '_blank';
                 anchor.download = fileName + ".pdf";
+                console.log(fileName);
+                console.log(anchor);
                 document.body.appendChild(anchor);
                 anchor.click();
-                this.disable(); // so we won't click too many times
+                //this.disable(); // so we won't click too many times
                 document.body.removeChild(anchor);
                 CQ.Notification.notify("PDF Generation","PDF is being generated, please stand by");
             }
