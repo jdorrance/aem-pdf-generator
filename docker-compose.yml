@@ -1,0 +1,36 @@
+version: "3"
+services:
+
+  author:
+    #build: https://bitbucket.org/sccdigital/ideal-aem-author
+    hostname: author.magento2shop.docker
+    image: smurfsky101/6-2_author:latest
+    environment:
+      - CQ_RUNMODE=author,docker,alp,test
+      - CQ_JVM_OPTS=-XX:MaxPermSize=512M -Xmx2G -XX:+UseParallelGC -XX:+UseParallelOldGC -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8765
+    volumes:
+      - autrepository:/aem/crx-quickstart/repository
+    ports:
+      - "4502:4502"
+      - "35729:35729"
+      - "8765:8765"
+    networks:
+      main:
+        aliases:
+          - author
+
+  pdf:
+    hostname: pdfgenerator.magento2shop.docker
+    image: arachnysdocker/athenapdf-service:latest
+    ports:
+      - "8080:8080"
+    networks:
+      main:
+        aliases:
+          - pdfgenerator
+
+volumes:
+  autrepository:
+
+networks:
+  main:

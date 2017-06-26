@@ -1,0 +1,2 @@
+#base=source/js
+sidekickbutton.js
