@@ -29,6 +29,23 @@
     <description>Core bundle for pdf-generator</description>
     <build>
         <plugins>
+            <!-- Maven SCR Plugin -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <version>1.24.0</version>
+                <artifactId>maven-scr-plugin</artifactId>
+                <configuration>
+                    <scanClasses>true</scanClasses>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>generate-scr-scrdescriptor</id>
+                        <goals>
+                            <goal>scr</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
             <plugin>
                 <groupId>org.apache.sling</groupId>
                 <artifactId>maven-sling-plugin</artifactId>
@@ -63,7 +80,7 @@
         <dependency>
             <groupId>org.apache.felix</groupId>
             <artifactId>org.apache.felix.scr.annotations</artifactId>
-            <version>1.6.0</version>
+            <version>1.12.0</version>
             <scope>provided</scope>
         </dependency>
 
@@ -83,6 +100,15 @@
         </dependency>
         <!-- ====================================================================== -->
         <!-- END CQ / AEM dependencies -->
+
+        <dependency>
+            <groupId>com.day.commons.osgi.wrapper</groupId>
+            <artifactId>com.day.commons.osgi.wrapper.commons-httpclient</artifactId>
+            <version>3.1.0.018</version>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- ====================================================================== -->
         <!-- OSGi Dependencies -->
         <dependency>
